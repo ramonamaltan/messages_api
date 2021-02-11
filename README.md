@@ -5,6 +5,9 @@
 * [Important note](#important-note)
 * [Run the project locally](#run-the-project-locally)
 * [Tests](#tests)
+* [API in Production](#api-in-production)
+* [Call Endpoints](#call-endpoints)
+* [Next Steps](#next-steps)
 
 ### General Info
 This is a REST API built on Ruby on Rails with a PostgreSQL Database.
@@ -19,7 +22,7 @@ The following statements are true about a message:
 - e-mail(s) and http link(s) can be part of the message,
 - it has an internal counter of how many times the message was retrieved (unsigned number)
 
-#### Important note
+### Important note
 For the point 'e-mail(s) and http link(s) can be part of the message' I assumed that a message has_many emails and a message has_many links.
 Thus I added 2 additional tables next to messages.
 To display the associated Links and Emails to a Message I included the Link and Email Data as relationships using the JSON:API.
@@ -147,7 +150,9 @@ rails test
 ### API in Production
 https://message-api-challenge.herokuapp.com/api/v1/messages
 
-### Call Endpoints locally
+### Call Endpoints
+Note: Use https://message-api-challenge.herokuapp.com instead of http://localhost:3000/ to call production API
+
 ##### List all messages
 `GET /messages`
 ````
