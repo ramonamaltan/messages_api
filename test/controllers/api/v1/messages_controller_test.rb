@@ -44,4 +44,11 @@ class Api::V1::MessagesControllerTest < ActionDispatch::IntegrationTest
           as: :json
     assert_response :unprocessable_entity
   end
+
+  test "should destroy message" do
+    assert_difference('Message.count', -1) do
+      delete api_v1_message_url(@message), as: :json
+    end
+    assert_response :no_content
+  end
 end
