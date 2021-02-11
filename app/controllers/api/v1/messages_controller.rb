@@ -1,4 +1,6 @@
 class Api::V1::MessagesController < ApplicationController
+  before_action :find_message, only: [:show, :update, :destroy]
+  
   def show
     render json: Message.find(params[:id])
   end
@@ -13,7 +15,6 @@ class Api::V1::MessagesController < ApplicationController
   end
 
   def update
-    @message = Message.find(params[:id])
     if @message.update(message_params)
       render json: @message, status: :ok
     else
@@ -22,12 +23,15 @@ class Api::V1::MessagesController < ApplicationController
   end
 
   def destroy
-    @message = Message.find(params[:id])
     @message.destroy
     head 204
   end
 
   private
+
+  def find_message
+    @message = Message.find(params[:id])
+  end
 
   def message_params
     params.require(:message).permit(:content)
