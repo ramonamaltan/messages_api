@@ -17,6 +17,8 @@ class Api::V1::MessagesControllerTest < ActionDispatch::IntegrationTest
     json_response = JSON.parse(self.response.body, symbolize_names: true)
     assert_equal @message.content, json_response.dig(:data, :attributes, :content)
     assert_equal @message.links.first.id.to_s, json_response.dig(:data, :relationships, :links, :data, 0, :id)
+    assert_equal @message.links.first.url, json_response.dig(:included, 0, :attributes, :url)
+    assert_equal @message.emails.first.id.to_s, json_response.dig(:data, :relationships, :emails, :data, 0, :id)
   end
 
   test "should create message" do

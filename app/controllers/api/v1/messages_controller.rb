@@ -7,7 +7,7 @@ class Api::V1::MessagesController < ApplicationController
   end
 
   def show
-    options = { include: [:links] }
+    options = { include: [:links, :emails] }
     render json: MessageSerializer.new(@message, options).serializable_hash.to_json
   end
 
