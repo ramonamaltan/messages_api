@@ -12,6 +12,15 @@ class Api::V1::MessagesController < ApplicationController
     end
   end
 
+  def update
+    @message = Message.find(params[:id])
+    if @message.update(message_params)
+      render json: @message, status: :ok
+    else
+      render json: @message.errors, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def message_params

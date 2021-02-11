@@ -30,4 +30,18 @@ class Api::V1::MessagesControllerTest < ActionDispatch::IntegrationTest
     end
     assert_response :unprocessable_entity
   end
+
+  test "should update message" do
+    patch api_v1_message_url(@message),
+          params: { message: { content: "update this message for testing" } },
+          as: :json
+    assert_response :success
+  end
+
+  test "should not update message with empty content" do
+    patch api_v1_message_url(@message),
+          params: { message: { content: "" } },
+          as: :json
+    assert_response :unprocessable_entity
+  end
 end

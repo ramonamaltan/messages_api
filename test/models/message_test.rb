@@ -7,6 +7,12 @@ class MessageTest < ActiveSupport::TestCase
     assert message.valid?
   end
 
+  test "Message with empty content should be invalid" do
+    message = Message.new(content: '')
+
+    assert_not message.valid?
+  end
+
   test "Message with html tags should be invalid" do
     message = Message.new(content: "<td class='content'>This is an example text</td>")
 
