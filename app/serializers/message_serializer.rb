@@ -1,6 +1,6 @@
 class MessageSerializer
   include JSONAPI::Serializer
-  attributes :content, :counter
+  attributes :content
   has_many :links
   has_many :emails
 end
