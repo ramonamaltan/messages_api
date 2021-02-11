@@ -2,6 +2,8 @@
 
 one:
   content: Example Content
+  counter: 1
 
 two:
   content: Test Content
+  counter: nil
