@@ -107,12 +107,12 @@ cd messages_api
 ruby -v
 ```
 
-The ouput should start with something like `ruby 2.5.1`
+I use `ruby 2.6.6`
 
-If not, install the right ruby version using [rbenv](https://github.com/rbenv/rbenv) (it could take a while):
+Install the right ruby version using [rbenv](https://github.com/rbenv/rbenv) (it could take a while):
 
 ```shell
-rbenv install 2.5.1
+rbenv install 2.6.6
 ```
 
 #### Install dependencies
@@ -120,7 +120,7 @@ rbenv install 2.5.1
 Using [Bundler](https://github.com/bundler/bundler)
 
 ```shell
-bundle && yarn
+bundle
 ```
 
 #### Initialize the database
