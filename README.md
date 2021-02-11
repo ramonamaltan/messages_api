@@ -157,11 +157,15 @@ Note: Use https://message-api-challenge.herokuapp.com instead of http://localhos
 `GET /messages`
 ````
 $ curl http://localhost:3000/api/v1/messages
+
+Status 200 OK
 ````
 ##### Retrieve a single message via its identifier
 `GET /messages/:uuid`
 ````
 $ curl http://localhost:3000/api/v1/messages/{uuid}
+
+Status: 200 OK
 ````
 ##### Create a message
 `POST /messages`
@@ -170,6 +174,8 @@ $ curl -X POST \
 -H 'Content-Type: application/json' \
 -d '{ "message": { "content": "example content" } }' \
 http://localhost:3000/api/v1/messages
+
+Status: 201 Created
 ````
 ##### Update a message
 `PATCH /messages/:uuid`
@@ -178,22 +184,15 @@ $ curl -i -X PATCH \
 -H 'Content-Type: application/json' \
 -d '{ "message": { "content": "updating the content" } }' \
 http://localhost:3000/api/v1/messages/{uuid}
+
+Status: 200 OK
 ````
 ##### Delete a message
 `DELETE /messages/:uuid`
 ````
 $ curl -i -X DELETE http://localhost:3000/api/v1/messages/{uuid}
 
-HTTP/1.1 204 No Content
-X-Frame-Options: SAMEORIGIN
-X-XSS-Protection: 1; mode=block
-X-Content-Type-Options: nosniff
-X-Download-Options: noopen
-X-Permitted-Cross-Domain-Policies: none
-Referrer-Policy: strict-origin-when-cross-origin
-Cache-Control: no-cache
-X-Request-Id: 481f5c26-a285-453d-9ba2-a7d37a1a0d03
-X-Runtime: 0.036946
+Status: 204 No Content
 ````
 
 ### Next Steps
