@@ -183,7 +183,7 @@ http://localhost:3000/api/v1/messages/{uuid}
 
 ### Next Steps
 - Create endpoints for links and emails
-- Interface for root page of https://message-api-challenge.herokuapp.com including the documentation
+- Create user interface for root page of my heroku app including the documentation
 - Set up Authorization with Tokens to restrict e.g. Updating and Deleting of messages to only the user who created the message 
 - Include user model for reasons stated in point above
 - Implement Possibility to filter and sort all Messages (params)
