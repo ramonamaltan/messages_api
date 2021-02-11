@@ -9,14 +9,8 @@ class Api::V1::MessagesController < ApplicationController
   def show
     options = { include: [:links, :emails] }
     render json: MessageSerializer.new(@message, options).serializable_hash.to_json
-    if @message.counter.nil?
-      @message.counter = 1
-      @message.save
-    else
-      @message.counter += 1
-      @message.save
-    end
-    
+    @message.counter.nil? ? @message.counter = 1 : @message.counter += 1
+    @message.save
   end
 
   def create
