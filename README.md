@@ -9,7 +9,7 @@
 ### General Info
 This is a REST API built on Ruby on Rails with a PostgreSQL Database.
 The Goal of the API is to maintain messages.
-To structure the JSON response I customized the [JSON](https://jsonapi.org/format/#document-structure) output using JSON:API serializers 
+To structure the JSON response I customized the JSON output using [JSON:API](https://jsonapi.org/format/#document-structure) serializers 
 
 The following statements are true about a message:
 - it has a non-guessable identifier (UUID v4),
@@ -23,7 +23,7 @@ The following statements are true about a message:
 For the point 'e-mail(s) and http link(s) can be part of the message' I assumed that a message has_many emails and a message has_many links.
 Thus I added 2 additional tables next to messages.
 To display the associated Links and Emails to a Message I included the Link and Email Data as relationships using the JSON:API.
-That's why the output looks like the following:
+That's why the output looks like the following: The message with id "892c1a5b-77b3-464f-9f6b-4b915788c485" has one link with id 25 and one email with id 16. The "included" attribute contains the data of this link and email.
 ```shell
 {
     "data": {
@@ -36,7 +36,7 @@ That's why the output looks like the following:
             "links": {
                 "data": [
                     {
-                        "id": "25",
+                        "id": "24",
                         "type": "link"
                     }
                 ]
@@ -97,8 +97,8 @@ The setup steps expect following tools installed on the system.
 #### Clone the repository
 
 ```shell
-git clone git@github.com:ramonamaltan/hoodgym.git
-cd hoodgym
+git clone git@github.com:ramonamaltan/messages_api.git
+cd messages_api
 ```
 
 #### Check your Ruby version
@@ -144,16 +144,46 @@ Run all tests with:
 ```shell
 rails test
 ```
+### API in Production
+https://message-api-challenge.herokuapp.com/api/v1/messages
 
-### Endpoints
-
-● List all messages
-● Retrieve a single message via its identifier
-● Create a message
-● Update a message
-● Delete a message
+### Call Endpoints locally
+##### List all messages
+`GET /messages`
+````
+$ curl http://localhost:3000/api/v1/messages
+````
+##### Retrieve a single message via its identifier
+`GET /messages/:uuid`
+````
+$ curl http://localhost:3000/api/v1/messages/{uuid}
+````
+##### Create a message
+`POST /messages`
+````
+$ curl -X POST \
+-H 'Content-Type: application/json' \
+-d '{ "message": { "content": "example content" } }' \
+http://localhost:3000/api/v1/messages
+````
+##### Update a message
+`PATCH /messages/:uuid`
+````
+$ curl -i -X PATCH \
+-H 'Content-Type: application/json' \
+-d '{ "message": { "content": "updating the content" } }' \
+http://localhost:3000/api/v1/messages/{uuid}
+````
+##### Delete a message
+`DELETE /messages/:uuid`
+````
+$ curl -i -X DELETE
+http://localhost:3000/api/v1/messages/{uuid}
+````
 
 ### Next Steps
+- Create endpoints for links and emails
+- Interface for root page of https://message-api-challenge.herokuapp.com including the documentation
 - Set up Authorization with Tokens to restrict e.g. Updating and Deleting of messages to only the user who created the message 
 - Include user model for reasons stated in point above
 - Implement Possibility to filter and sort all Messages (params)
