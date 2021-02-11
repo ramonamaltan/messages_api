@@ -1,6 +1,10 @@
 class Api::V1::MessagesController < ApplicationController
   before_action :find_message, only: [:show, :update, :destroy]
-  
+
+  def index
+    render json: Message.all
+  end
+
   def show
     render json: Message.find(params[:id])
   end

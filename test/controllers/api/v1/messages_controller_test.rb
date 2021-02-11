@@ -5,6 +5,11 @@ class Api::V1::MessagesControllerTest < ActionDispatch::IntegrationTest
     @message = messages(:one)
   end
 
+  test "should show all messages" do
+    get api_v1_messages_url, as: :json
+    assert_response :success
+  end
+
   test "should show message" do
     get api_v1_message_url(@message), as: :json
     assert_response :success
