@@ -2,17 +2,18 @@ class Api::V1::MessagesController < ApplicationController
   before_action :find_message, only: [:show, :update, :destroy]
 
   def index
-    render json: Message.all
+    @messages = Message.all
+    render json: MessageSerializer.new(@messages).serializable_hash.to_json
   end
 
   def show
-    render json: Message.find(params[:id])
+    render json: MessageSerializer.new(@message).serializable_hash.to_json
   end
 
   def create
     @message = Message.new(message_params)
     if @message.save
-      render json: @message, status: :created
+      render json: MessageSerializer.new(@message).serializable_hash.to_json, status: :created
     else
       render json: @message.errors, status: :unprocessable_entity
     end
@@ -20,7 +21,7 @@ class Api::V1::MessagesController < ApplicationController
 
   def update
     if @message.update(message_params)
-      render json: @message, status: :ok
+      render json: MessageSerializer.new(@message).serializable_hash.to_json, status: :ok
     else
       render json: @message.errors, status: :unprocessable_entity
     end

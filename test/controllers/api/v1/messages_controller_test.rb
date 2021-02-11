@@ -15,7 +15,7 @@ class Api::V1::MessagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     json_response = JSON.parse(self.response.body)
-    assert_equal @message.content, json_response['content']
+    assert_equal @message.content, json_response['data']['attributes']['content']
   end
 
   test "should create message" do
