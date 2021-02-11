@@ -9,7 +9,7 @@
 ### General Info
 This is a REST API built on Ruby on Rails with a PostgreSQL Database.
 The Goal of the API is to maintain messages.
-To structure the JSON response I customized the JSON output using JSON:API serializers https://jsonapi.org/format/#document-structure
+To structure the JSON response I customized the [JSON](https://jsonapi.org/format/#document-structure) output using JSON:API serializers 
 
 The following statements are true about a message:
 - it has a non-guessable identifier (UUID v4),
